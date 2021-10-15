@@ -1,7 +1,7 @@
 ### Enem database analysis 
 
 
-Extraction transformation and loading process to access the Enem database information. Here, there are some cleaning flow to get insights about Enem exam. The visualizations were obtained by using Microsoft Power BI service. The aim of this project is to show some patterns and the distribution of students scores by Brazilian states.
+Extraction transformation and loading process to access the Enem database information. Here, there are some cleaning flows to get insights about Enem exam. The visualizations were obtained by using Microsoft Power BI service. The aim of this project is to show some patterns and the distribution of students scores by Brazilian states.
 
 
 
