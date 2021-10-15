@@ -57,3 +57,25 @@ alunos['RENDA_MENSAL'] = alunos['RENDA_MENSAL'].map(dicionario_renda_mensal)
 #school_table
 escola = pd.DataFrame(initial_df, columns = ['NU_INSCRICAO','NO_MUNICIPIO_ESC','SG_UF_ESC','TP_LOCALIZACAO_ESC', 'TP_DEPENDENCIA_ADM_ESC'])
 
+dicionario_localizacao_esc = {1:'Urbana', 2:'Rural'}
+escola['TP_LOCALIZACAO_ESC'] = escola['TP_LOCALIZACAO_ESC'].map(dicionario_localizacao_esc)
+
+dicionario_dep_adm = {1:'Federal', 2:'Estadual', 3:'Municipal', 4:'Privada'}
+escola['TP_DEPENDENCIA_ADM_ESC'] = escola['TP_DEPENDENCIA_ADM_ESC'].map(dicionario_dep_adm)
+
+#localization_table
+localidade  = pd.DataFrame(initial_df, columns = ['NU_INSCRICAO','NO_MUNICIPIO_RESIDENCIA', 'SG_UF_RESIDENCIA', 'SG_UF_PROVA'])
+
+
+# saving tables to csv
+alunos.to_csv('alunos.csv', encoding = 'utf-8', index = False)
+escola.to_csv('escola.csv', encoding = 'utf-8', index = False)
+localidade.to_csv('localidade.csv', encoding = 'utf-8',  index = False)
+notas.to_csv('notas.csv', encoding = 'utf-8',  index = False)
+
+s3 = boto3.resource('s3')
+s3.meta.client.upload_file('alunos.csv', bucket_name, 'refined/alunos.csv')
+s3.meta.client.upload_file('escola.csv', bucket_name, 'refined/escola.csv')
+s3.meta.client.upload_file('localidade.csv', bucket_name, 'refined/localidade.csv')
+s3.meta.client.upload_file('notas.csv', bucket_name, 'refined/notas.csv')
+
